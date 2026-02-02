@@ -6,17 +6,18 @@
 
 <title>Srinivasa R | Senior SDET</title>
 
-<!-- Bootstrap 5 CDN -->
+<!-- Bootstrap 5 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: #0f172a;
     color: #e5e7eb;
-  }
-
-  a {
-    text-decoration: none;
+    margin: 0;
   }
 
   /* Sidebar */
@@ -26,13 +27,19 @@
     position: fixed;
     height: 100vh;
     padding: 30px 20px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  #sidebar.hide {
+    transform: translateX(-100%);
   }
 
   #sidebar img {
-    width: 140px;
+    width: 130px;
     border-radius: 50%;
     display: block;
-    margin: 0 auto 15px;
+    margin: 0 auto 12px;
   }
 
   #sidebar h4 {
@@ -54,10 +61,27 @@
     border-radius: 6px;
     margin-bottom: 6px;
     font-size: 14px;
+    text-decoration: none;
   }
 
+  #sidebar a.active,
   #sidebar a:hover {
     background: #1e293b;
+  }
+
+  /* Mobile toggle */
+  #menuToggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    font-size: 22px;
+    background: #020617;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
   }
 
   /* Content */
@@ -85,7 +109,7 @@
     color: #cbd5f5;
   }
 
-  .skill-badge {
+  .skill {
     background: #1e293b;
     padding: 8px 12px;
     border-radius: 20px;
@@ -100,10 +124,29 @@
     font-size: 14px;
     margin-top: 40px;
   }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    #sidebar {
+      transform: translateX(-100%);
+    }
+    #sidebar.show {
+      transform: translateX(0);
+    }
+    #content {
+      margin-left: 0;
+      padding: 60px 20px;
+    }
+    #menuToggle {
+      display: block;
+    }
+  }
 </style>
 </head>
 
 <body>
+
+<button id="menuToggle">☰</button>
 
 <!-- SIDEBAR -->
 <div id="sidebar">
@@ -111,12 +154,12 @@
   <h4>Srinivasa R</h4>
   <p>Senior SDET / QA Automation Engineer</p>
 
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#experience">Experience</a>
-  <a href="#projects">Work</a>
-  <a href="#contact">Contact</a>
+  <a href="#home" class="nav-link">Home</a>
+  <a href="#about" class="nav-link">About</a>
+  <a href="#skills" class="nav-link">Skills</a>
+  <a href="#experience" class="nav-link">Experience</a>
+  <a href="#projects" class="nav-link">Work</a>
+  <a href="#contact" class="nav-link">Contact</a>
 
   <a class="btn btn-info w-100 mt-3 fw-bold" href="SRINIVASA_8YRS_SDET.pdf" download>
     Download Resume
@@ -130,9 +173,7 @@
   <section id="home">
     <h1>Senior SDET / QA Automation Engineer</h1>
     <p class="mt-3">
-      8+ years of experience designing scalable automation frameworks,
-      integrating CI/CD pipelines, and enabling reliable releases
-      for enterprise and cloud-based products.
+      <span id="typed"></span>
     </p>
   </section>
 
@@ -141,48 +182,47 @@
     <h3>About</h3>
     <p>
       Senior QA Automation Engineer with strong ownership of automation
-      frameworks across multiple test layers. Experienced in working
-      closely with development teams to improve testability,
-      coverage, and release confidence.
+      frameworks across multiple test layers. Experienced in partnering
+      closely with development teams to improve testability, coverage,
+      and release confidence.
     </p>
     <p>
-      Comfortable operating in fast-paced product environments,
-      balancing speed and quality using Python-based automation,
-      CI/CD pipelines, and data-driven testing approaches.
+      Proven ability to balance speed and quality in fast-paced
+      product environments using Python-based automation,
+      CI/CD pipelines, and data-driven testing strategies.
     </p>
   </section>
 
   <!-- SKILLS -->
   <section id="skills">
     <h3>Core Skills</h3>
-
-    <p><strong>Automation & Frameworks</strong></p>
     <div>
-      <span class="skill-badge">Python</span>
-      <span class="skill-badge">Robot Framework</span>
-      <span class="skill-badge">Selenium</span>
-      <span class="skill-badge">Pytest</span>
-    </div>
+      <strong>Automation:</strong><br>
+      <span class="skill">Python</span>
+      <span class="skill">Robot Framework</span>
+      <span class="skill">Selenium</span>
+      <span class="skill">Pytest</span>
+    </div><br>
 
-    <p class="mt-3"><strong>Testing & Quality</strong></p>
     <div>
-      <span class="skill-badge">API Testing (Postman)</span>
-      <span class="skill-badge">Regression Testing</span>
-      <span class="skill-badge">Verification & Validation</span>
-    </div>
+      <strong>Testing & Quality:</strong><br>
+      <span class="skill">API Testing</span>
+      <span class="skill">Regression</span>
+      <span class="skill">Verification & Validation</span>
+    </div><br>
 
-    <p class="mt-3"><strong>CI/CD & Tools</strong></p>
     <div>
-      <span class="skill-badge">Git / GitLab</span>
-      <span class="skill-badge">Jenkins</span>
-      <span class="skill-badge">Jira</span>
-      <span class="skill-badge">TestRail</span>
-    </div>
+      <strong>CI/CD & Tools:</strong><br>
+      <span class="skill">Git</span>
+      <span class="skill">Jenkins</span>
+      <span class="skill">Jira</span>
+      <span class="skill">TestRail</span>
+    </div><br>
 
-    <p class="mt-3"><strong>Cloud (Working Knowledge)</strong></p>
     <div>
-      <span class="skill-badge">AWS</span>
-      <span class="skill-badge">Azure Storage</span>
+      <strong>Cloud:</strong><br>
+      <span class="skill">AWS</span>
+      <span class="skill">Azure Storage</span>
     </div>
   </section>
 
@@ -190,34 +230,24 @@
   <section id="experience">
     <h3>Experience (Impact)</h3>
     <ul>
-      <li>Built and maintained automation frameworks supporting 1,000+ regression test cases.</li>
-      <li>Reduced manual testing effort by ~60% through automation and CI/CD integration.</li>
-      <li>Integrated automated test execution into Jenkins pipelines, reducing feedback time drastically.</li>
-      <li>Improved release stability by identifying edge cases early using API and system-level automation.</li>
+      <li>Built automation frameworks supporting 1,000+ regression test cases.</li>
+      <li>Reduced manual testing effort by ~60% through automation & CI/CD.</li>
+      <li>Integrated automated test execution into Jenkins pipelines.</li>
+      <li>Improved release stability via early defect detection.</li>
     </ul>
   </section>
 
   <!-- PROJECTS -->
   <section id="projects">
     <h3>Selected Work</h3>
+    <p><strong>Automation Framework Platform</strong><br>
+      Designed reusable automation frameworks using Python & Robot Framework.</p>
 
-    <p><strong>Automation Framework Platform</strong></p>
-    <p>
-      Designed reusable automation frameworks using Python and
-      Robot Framework to support scalable regression and end-to-end testing.
-    </p>
+    <p><strong>CI/CD Quality Gates</strong><br>
+      Implemented automated quality gates to prevent unstable builds.</p>
 
-    <p><strong>CI/CD Quality Gates</strong></p>
-    <p>
-      Implemented automated quality gates in Jenkins pipelines,
-      preventing unstable builds from reaching production.
-    </p>
-
-    <p><strong>API Validation</strong></p>
-    <p>
-      Developed REST API test suites to validate service contracts,
-      data consistency, and failure scenarios.
-    </p>
+    <p><strong>API Validation</strong><br>
+      Developed REST API test suites validating service contracts.</p>
   </section>
 
   <!-- CONTACT -->
@@ -235,6 +265,54 @@
   </footer>
 
 </div>
+
+<!-- Typed Effect -->
+<script>
+  const text = [
+    "8+ years building scalable automation frameworks.",
+    "Expert in Python, Robot Framework, and CI/CD pipelines.",
+    "Focused on reliability, quality, and fast feedback."
+  ];
+  let i = 0, j = 0, current = "", isDeleting = false;
+  const speed = 80;
+
+  function type() {
+    current = text[i];
+    document.getElementById("typed").innerHTML =
+      current.substring(0, j) + "|";
+
+    if (!isDeleting && j++ === current.length) {
+      setTimeout(() => isDeleting = true, 1200);
+    } else if (isDeleting && j-- === 0) {
+      isDeleting = false;
+      i = (i + 1) % text.length;
+    }
+    setTimeout(type, isDeleting ? 40 : speed);
+  }
+  type();
+</script>
+
+<!-- Active Menu + Mobile -->
+<script>
+  const links = document.querySelectorAll(".nav-link");
+  const sections = document.querySelectorAll("section");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 100;
+      if (scrollY >= top) current = sec.id;
+    });
+
+    links.forEach(a => {
+      a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+    });
+  });
+
+  const toggle = document.getElementById("menuToggle");
+  const sidebar = document.getElementById("sidebar");
+  toggle.onclick = () => sidebar.classList.toggle("show");
+</script>
 
 </body>
 </html>
