@@ -7,18 +7,26 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
 
 <style>
 html { scroll-behavior:smooth; }
 
 :root{
 --bg:#0f172a;
---glass:rgba(255,255,255,0.08);
---card:rgba(30,41,59,0.6);
+--glass:rgba(255,255,255,0.05);
+--card:#1e293b;
 --text:#e5e7eb;
 --muted:#94a3b8;
 --primary:#3b82f6;
+}
+
+body.light{
+--bg:#f8fafc;
+--glass:rgba(255,255,255,0.6);
+--card:#ffffff;
+--text:#0f172a;
+--muted:#475569;
+--primary:#2563eb;
 }
 
 body{
@@ -26,28 +34,7 @@ background:var(--bg);
 color:var(--text);
 margin:0;
 font-family:Segoe UI;
-overflow-x:hidden;
-cursor:none;
-}
-
-/* Mouse Glow */
-.cursor-glow{
-position:fixed;
-width:220px;
-height:220px;
-background:radial-gradient(circle, rgba(59,130,246,0.3), transparent 70%);
-border-radius:50%;
-pointer-events:none;
-z-index:9999;
-transform:translate(-50%,-50%);
-}
-
-/* Particles */
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-3;
+transition:.3s;
 }
 
 /* Sidebar */
@@ -97,94 +84,75 @@ padding:60px 40px;
 max-width:1100px;
 }
 
-/* Parallax Hero */
+/* Hero */
 .hero{
-background:url("IMG_2663.jpg") center/cover fixed no-repeat;
-padding:120px 40px;
+background:linear-gradient(135deg,var(--primary),#1e40af);
+padding:80px 40px;
 border-radius:20px;
 margin-bottom:60px;
-position:relative;
-overflow:hidden;
+color:#fff;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
 
-.hero::before{
-content:"";
-position:absolute;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.6);
+.hero-buttons a{
+padding:10px 20px;
+border-radius:25px;
+font-weight:bold;
+text-decoration:none;
+margin-right:10px;
 }
 
-.hero-content{
-position:relative;
-z-index:2;
+.btn-white{
+background:#fff;
+color:var(--primary);
 }
 
-.hero h1{font-size:2.8rem;}
-
-#typed-text{
-border-right:3px solid #fff;
-white-space:nowrap;
-overflow:hidden;
+.btn-outline{
+border:2px solid #fff;
+color:#fff;
 }
 
-/* Animated Counters */
-.stats{
-display:flex;
-gap:30px;
-margin-top:30px;
-}
-
-.stat-box{
-background:var(--card);
-padding:20px;
-border-radius:15px;
-text-align:center;
-backdrop-filter:blur(10px);
-}
-
-/* Glass Skill Cards */
+/* Skills */
 .skill{
 padding:8px 14px;
 border-radius:25px;
 font-size:13px;
-margin:6px;
+margin:6px 6px 6px 0;
 display:inline-block;
 font-weight:600;
 color:#fff;
-background:var(--glass);
-backdrop-filter:blur(10px);
-transition:.3s;
+transition:.3s ease;
 }
 
 .skill:hover{
-transform:translateY(-5px);
-background:var(--primary);
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* Timeline */
-.timeline{
-border-left:3px solid var(--primary);
-padding-left:30px;
-}
+.skill-python{ background:#3776AB; }
+.skill-selenium{ background:#43B02A; }
+.skill-robot{ background:#FF6F00; }
+.skill-pytest{ background:#0A9F8E; }
+.skill-api{ background:#6C63FF; }
+.skill-devops{ background:#0EA5E9; }
+.skill-cloud{ background:#F59E0B; }
+.skill-tools{ background:#10B981; }
+.skill-testing{ background:#EF4444; }
 
-.timeline-item{
-margin-bottom:40px;
-opacity:0;
-transform:translateY(40px);
-transition:.8s ease;
-}
+/* Sections */
+section{ margin-bottom:60px; }
 
-.timeline-item.active{
-opacity:1;
-transform:translateY(0);
+h3{
+border-bottom:1px solid var(--muted);
+padding-bottom:6px;
+margin-bottom:20px;
 }
 
 /* Reveal */
 .reveal{
 opacity:0;
 transform:translateY(40px);
-transition:.8s;
+transition:.8s ease;
 }
 
 .reveal.active{
@@ -192,10 +160,10 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* Theme Switch */
-.theme-switch{
+/* Toggle */
+.toggle-btn{
 position:fixed;
-top:20px;
+top:15px;
 right:20px;
 background:var(--primary);
 color:#fff;
@@ -208,50 +176,35 @@ z-index:2000;
 @media(max-width:768px){
 #sidebar{display:none;}
 #content{margin-left:0;padding:40px 20px;}
-body{cursor:auto;}
 }
 </style>
 </head>
 
 <body>
 
-<div id="particles-js"></div>
-<div class="cursor-glow"></div>
-<div class="theme-switch" onclick="toggleTheme()">Toggle Theme</div>
+<div class="toggle-btn" onclick="toggleTheme()">🌙</div>
 
 <div id="sidebar">
-<img src="DSC_1169 copy (3).JPG">
+<img src="DSC_1169 copy (3).JPG" alt="Srinivasa R">
 <p>Senior Technical Lead | Senior SDET</p>
+
 <a href="#home">Home</a>
 <a href="#about">Summary</a>
 <a href="#skills">Skills</a>
 <a href="#experience">Experience</a>
 <a href="#contact">Contact</a>
+
+<button class="btn btn-info w-100 mt-3 fw-bold" data-bs-toggle="modal" data-bs-target="#resumeModal">
+Preview Resume
+</button>
 </div>
 
 <div id="content">
 
-<section id="home" class="hero" data-tilt>
-<div class="hero-content">
+<section id="home" class="hero">
 <h1>Hi, I'm Srinivasa 👋</h1>
-<h4><span id="typed-text"></span></h4>
+<h4>Senior Technical Lead | Senior SDET</h4>
 <p>8+ years building scalable automation frameworks across Web, API, Simulation & Cloud platforms.</p>
-
-<div class="stats">
-<div class="stat-box">
-<h3 class="counter" data-target="8">0</h3>
-<p>Years Experience</p>
-</div>
-<div class="stat-box">
-<h3 class="counter" data-target="1000">0</h3>
-<p>Test Cases Automated</p>
-</div>
-<div class="stat-box">
-<h3 class="counter" data-target="40">0</h3>
-<p>% Regression Reduced</p>
-</div>
-</div>
-</div>
 </section>
 
 <section id="about" class="reveal">
@@ -265,44 +218,62 @@ Experienced in end-to-end automation framework design and DevOps integration.
 
 <section id="skills" class="reveal">
 <h3>Technical Skills</h3>
-<span class="skill">Python</span>
-<span class="skill">Selenium</span>
-<span class="skill">Robot Framework</span>
-<span class="skill">Pytest</span>
-<span class="skill">TestComplete</span>
-<span class="skill">API Testing</span>
-<span class="skill">Jenkins</span>
-<span class="skill">Git</span>
-<span class="skill">AWS</span>
-<span class="skill">Azure Storage</span>
-<span class="skill">JIRA</span>
-<span class="skill">TestRail</span>
+
+<span class="skill skill-python">Python</span>
+<span class="skill skill-selenium">Selenium</span>
+<span class="skill skill-robot">Robot Framework</span>
+<span class="skill skill-pytest">Pytest</span>
+<span class="skill skill-tools">TestComplete</span>
+<span class="skill skill-api">API Testing (Postman)</span>
+<span class="skill skill-devops">Jenkins</span>
+<span class="skill skill-devops">Git / GitLab</span>
+<span class="skill skill-cloud">AWS</span>
+<span class="skill skill-cloud">Azure Storage</span>
+<span class="skill skill-tools">JIRA</span>
+<span class="skill skill-tools">TestRail</span>
+<span class="skill skill-testing">Regression Testing</span>
+<span class="skill skill-testing">Verification & Validation</span>
+
 </section>
 
 <section id="experience" class="reveal">
 <h3>Professional Experience</h3>
 
-<div class="timeline">
-
-<div class="timeline-item">
 <h5>Technical Lead – HCLTech (Eagle – PCB Design Software)</h5>
 <p><em>06/2022 - Present | Bangalore, India</em></p>
-<p>Reduced regression cycle by 40% through automation leadership and CI/CD integration.</p>
-</div>
+<ul>
+<li>Automated application installation and environment setup using Excel-driven logic in TestComplete.</li>
+<li>Reduced regression cycles by 40% improving release confidence.</li>
+<li>Centralized installation and execution control within TestRail reducing manual dependency and errors.</li>
+<li>Performed end-to-end system validation with US-based Eagle PCB Design team.</li>
+<li>Executed early-stage validation using simulators before full environment availability.</li>
+<li>Designed and automated functional & regression test cases using TestComplete (Python).</li>
+<li>Integrated automation scripts into CI/CD pipelines.</li>
+<li>Managed automation frameworks using Git and AWS cloud validations.</li>
+</ul>
 
-<div class="timeline-item">
-<h5>Senior Test Engineer – Emids</h5>
+<h5>Senior Test Engineer – Emids (Infosario Registry Platform)</h5>
 <p><em>02/2021 - 06/2022 | Bangalore, India</em></p>
-<p>Built scalable Selenium & Robot Framework automation integrated with Jenkins.</p>
-</div>
+<ul>
+<li>Designed scalable UI automation using Selenium WebDriver & Robot Framework (Python).</li>
+<li>Built reusable automation frameworks improving stability and coverage.</li>
+<li>Integrated automation with Jenkins CI/CD pipelines.</li>
+<li>Executed validations on AWS cloud environments.</li>
+<li>Performed API testing using Postman.</li>
+<li>Led functional, regression & system testing ensuring release stability.</li>
+<li>Managed defect lifecycle using JIRA.</li>
+</ul>
 
-<div class="timeline-item">
 <h5>Senior Product Development Engineer – Harman</h5>
 <p><em>07/2016 - 02/2020 | Bangalore, India</em></p>
-<p>Performed telemetry validation and Intel pre-silicon simulation testing.</p>
-</div>
+<ul>
+<li>Validated Certiq mining telemetry platform ensuring reliable data ingestion.</li>
+<li>Performed simulator-based telemetry validation using Python automation.</li>
+<li>Tested APIs & data pipelines using Postman & Python scripts.</li>
+<li>Performed Intel pre-silicon validation using simulation environments.</li>
+<li>Debugged early-stage system issues with firmware & architecture teams.</li>
+</ul>
 
-</div>
 </section>
 
 <section id="contact" class="reveal">
@@ -310,71 +281,28 @@ Experienced in end-to-end automation framework design and DevOps integration.
 <p>
 📧 srini1992r@gmail.com <br>
 📱 +91 9164289173 <br>
-📍 Bengaluru, India
+📍 Bengaluru, India <br>
+<a href="https://www.linkedin.com/in/srinivasa0b604aba" target="_blank">LinkedIn</a>
 </p>
 </section>
+
+<footer class="text-center mt-5">
+© 2026 Srinivasa R
+</footer>
 
 </div>
 
 <script>
-/* Mouse Glow */
-const glow=document.querySelector(".cursor-glow");
-document.addEventListener("mousemove",e=>{
-glow.style.left=e.clientX+"px";
-glow.style.top=e.clientY+"px";
-});
-
-/* Typing Effect */
-const roles=["Senior Technical Lead","Senior SDET","Automation Architect"];
-let i=0,j=0,current="",isDeleting=false;
-function type(){
-current=roles[i];
-document.getElementById("typed-text").textContent=current.substring(0,j);
-if(!isDeleting && j++===current.length){isDeleting=true;setTimeout(type,1000);return;}
-if(isDeleting && j--===0){isDeleting=false;i=(i+1)%roles.length;}
-setTimeout(type,isDeleting?40:80);
-}
-type();
-
-/* Reveal */
-window.addEventListener("scroll",()=>{
-document.querySelectorAll(".reveal,.timeline-item").forEach(el=>{
-if(el.getBoundingClientRect().top<window.innerHeight-100){
-el.classList.add("active");
-}
-});
-});
-
-/* Animated Counters */
-const counters=document.querySelectorAll(".counter");
-counters.forEach(counter=>{
-const update=()=>{
-const target=+counter.getAttribute("data-target");
-const count=+counter.innerText;
-const inc=target/200;
-if(count<target){
-counter.innerText=Math.ceil(count+inc);
-setTimeout(update,10);
-}else{
-counter.innerText=target;
-}
-};
-update();
-});
-
-/* Theme Switch */
 function toggleTheme(){
 document.body.classList.toggle("light");
 }
 
-/* Particles */
-particlesJS("particles-js",{
-particles:{
-number:{value:60},
-color:{value:"#3b82f6"},
-line_linked:{enable:true,color:"#3b82f6",opacity:0.3},
-move:{enable:true,speed:2}
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".reveal").forEach(el=>{
+if(el.getBoundingClientRect().top<window.innerHeight-100){
+el.classList.add("active");
 }
+});
 });
 </script>
 
