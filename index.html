@@ -6,35 +6,72 @@
 <title>Srinivasa R | Senior Technical Lead | Senior SDET</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
 html { scroll-behavior:smooth; }
 
 :root{
---bg:#0f172a;
---glass:rgba(255,255,255,0.05);
---card:#1e293b;
 --text:#e5e7eb;
 --muted:#94a3b8;
 --primary:#3b82f6;
-}
-
-body.light{
---bg:#f8fafc;
---glass:rgba(255,255,255,0.6);
---card:#ffffff;
---text:#0f172a;
---muted:#475569;
---primary:#2563eb;
+--card:rgba(30,41,59,0.8);
 }
 
 body{
-background:var(--bg);
-color:var(--text);
 margin:0;
 font-family:Segoe UI;
-transition:.3s;
+color:var(--text);
+overflow-x:hidden;
+}
+
+/* ===== Animated Gradient Background ===== */
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e3a8a);
+background-size:400% 400%;
+animation:gradientMove 15s ease infinite;
+z-index:-3;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* ===== Floating Blobs ===== */
+.blob{
+position:fixed;
+border-radius:50%;
+filter:blur(80px);
+opacity:.4;
+z-index:-2;
+animation:float 20s infinite alternate ease-in-out;
+}
+
+.blob1{
+width:400px;
+height:400px;
+background:#3b82f6;
+top:-100px;
+left:-100px;
+}
+
+.blob2{
+width:300px;
+height:300px;
+background:#9333ea;
+bottom:-80px;
+right:-80px;
+animation-delay:5s;
+}
+
+@keyframes float{
+from{transform:translateY(0px) translateX(0px);}
+to{transform:translateY(60px) translateX(40px);}
 }
 
 /* Sidebar */
@@ -43,8 +80,8 @@ width:260px;
 height:100vh;
 position:fixed;
 padding:30px 20px;
+background:rgba(15,23,42,0.7);
 backdrop-filter:blur(15px);
-background:var(--glass);
 border-right:1px solid rgba(255,255,255,0.1);
 }
 
@@ -74,7 +111,7 @@ margin-bottom:6px;
 }
 
 #sidebar a:hover{
-background:var(--card);
+background:rgba(255,255,255,0.1);
 }
 
 /* Content */
@@ -86,30 +123,20 @@ max-width:1100px;
 
 /* Hero */
 .hero{
-background:linear-gradient(135deg,var(--primary),#1e40af);
+background:rgba(30,41,59,0.6);
+backdrop-filter:blur(20px);
 padding:80px 40px;
 border-radius:20px;
 margin-bottom:60px;
-color:#fff;
-box-shadow:0 15px 40px rgba(0,0,0,.3);
+box-shadow:0 15px 40px rgba(0,0,0,.4);
 }
 
-.hero-buttons a{
-padding:10px 20px;
-border-radius:25px;
-font-weight:bold;
-text-decoration:none;
-margin-right:10px;
+.hero h1{
+font-size:2.8rem;
 }
 
-.btn-white{
-background:#fff;
-color:var(--primary);
-}
-
-.btn-outline{
-border:2px solid #fff;
-color:#fff;
+.hero p{
+color:var(--muted);
 }
 
 /* Skills */
@@ -126,7 +153,7 @@ transition:.3s ease;
 
 .skill:hover{
 transform:translateY(-5px) scale(1.05);
-box-shadow:0 8px 20px rgba(0,0,0,0.3);
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
 }
 
 .skill-python{ background:#3776AB; }
@@ -139,16 +166,15 @@ box-shadow:0 8px 20px rgba(0,0,0,0.3);
 .skill-tools{ background:#10B981; }
 .skill-testing{ background:#EF4444; }
 
-/* Sections */
 section{ margin-bottom:60px; }
 
 h3{
-border-bottom:1px solid var(--muted);
+border-bottom:1px solid rgba(255,255,255,0.2);
 padding-bottom:6px;
 margin-bottom:20px;
 }
 
-/* Reveal */
+/* Reveal Animation */
 .reveal{
 opacity:0;
 transform:translateY(40px);
@@ -160,19 +186,6 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* Toggle */
-.toggle-btn{
-position:fixed;
-top:15px;
-right:20px;
-background:var(--primary);
-color:#fff;
-padding:8px 14px;
-border-radius:20px;
-cursor:pointer;
-z-index:2000;
-}
-
 @media(max-width:768px){
 #sidebar{display:none;}
 #content{margin-left:0;padding:40px 20px;}
@@ -182,7 +195,9 @@ z-index:2000;
 
 <body>
 
-<div class="toggle-btn" onclick="toggleTheme()">🌙</div>
+<!-- Animated Background Elements -->
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
 
 <div id="sidebar">
 <img src="DSC_1169 copy (3).JPG" alt="Srinivasa R">
@@ -193,15 +208,11 @@ z-index:2000;
 <a href="#skills">Skills</a>
 <a href="#experience">Experience</a>
 <a href="#contact">Contact</a>
-
-<button class="btn btn-info w-100 mt-3 fw-bold" data-bs-toggle="modal" data-bs-target="#resumeModal">
-Preview Resume
-</button>
 </div>
 
 <div id="content">
 
-<section id="home" class="hero">
+<section id="home" class="hero reveal">
 <h1>Hi, I'm Srinivasa 👋</h1>
 <h4>Senior Technical Lead | Senior SDET</h4>
 <p>8+ years building scalable automation frameworks across Web, API, Simulation & Cloud platforms.</p>
@@ -239,40 +250,14 @@ Experienced in end-to-end automation framework design and DevOps integration.
 <section id="experience" class="reveal">
 <h3>Professional Experience</h3>
 
-<h5>Technical Lead – HCLTech (Eagle – PCB Design Software)</h5>
-<p><em>06/2022 - Present | Bangalore, India</em></p>
-<ul>
-<li>Automated application installation and environment setup using Excel-driven logic in TestComplete.</li>
-<li>Reduced regression cycles by 40% improving release confidence.</li>
-<li>Centralized installation and execution control within TestRail reducing manual dependency and errors.</li>
-<li>Performed end-to-end system validation with US-based Eagle PCB Design team.</li>
-<li>Executed early-stage validation using simulators before full environment availability.</li>
-<li>Designed and automated functional & regression test cases using TestComplete (Python).</li>
-<li>Integrated automation scripts into CI/CD pipelines.</li>
-<li>Managed automation frameworks using Git and AWS cloud validations.</li>
-</ul>
+<h5>Technical Lead – HCLTech</h5>
+<p><em>06/2022 - Present | Bangalore</em></p>
 
-<h5>Senior Test Engineer – Emids (Infosario Registry Platform)</h5>
-<p><em>02/2021 - 06/2022 | Bangalore, India</em></p>
-<ul>
-<li>Designed scalable UI automation using Selenium WebDriver & Robot Framework (Python).</li>
-<li>Built reusable automation frameworks improving stability and coverage.</li>
-<li>Integrated automation with Jenkins CI/CD pipelines.</li>
-<li>Executed validations on AWS cloud environments.</li>
-<li>Performed API testing using Postman.</li>
-<li>Led functional, regression & system testing ensuring release stability.</li>
-<li>Managed defect lifecycle using JIRA.</li>
-</ul>
+<h5>Senior Test Engineer – Emids</h5>
+<p><em>02/2021 - 06/2022 | Bangalore</em></p>
 
 <h5>Senior Product Development Engineer – Harman</h5>
-<p><em>07/2016 - 02/2020 | Bangalore, India</em></p>
-<ul>
-<li>Validated Certiq mining telemetry platform ensuring reliable data ingestion.</li>
-<li>Performed simulator-based telemetry validation using Python automation.</li>
-<li>Tested APIs & data pipelines using Postman & Python scripts.</li>
-<li>Performed Intel pre-silicon validation using simulation environments.</li>
-<li>Debugged early-stage system issues with firmware & architecture teams.</li>
-</ul>
+<p><em>07/2016 - 02/2020 | Bangalore</em></p>
 
 </section>
 
@@ -286,17 +271,9 @@ Experienced in end-to-end automation framework design and DevOps integration.
 </p>
 </section>
 
-<footer class="text-center mt-5">
-© 2026 Srinivasa R
-</footer>
-
 </div>
 
 <script>
-function toggleTheme(){
-document.body.classList.toggle("light");
-}
-
 window.addEventListener("scroll",()=>{
 document.querySelectorAll(".reveal").forEach(el=>{
 if(el.getBoundingClientRect().top<window.innerHeight-100){
