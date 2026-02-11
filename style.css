@@ -302,7 +302,7 @@ h3 {
   #content { margin-left:0; padding:40px 20px; }
 }
 .highlight-role{
-background: linear-gradient(90deg,#3b82f6,#9333ea,#06b6d4);
+/* background: linear-gradient(90deg,#3b82f6,#9333ea,#06b6d4);
 background-size: 200% auto;
 animation: shine 4s linear infinite;
 
@@ -314,7 +314,11 @@ color: transparent;
 
 font-weight: 800;
 display: inline-block;
+} */
+.highlight-role{
+color:red !important;
 }
+
 
 @keyframes shine{
 to{background-position:200% center;}
