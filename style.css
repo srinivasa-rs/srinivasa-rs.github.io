@@ -122,15 +122,35 @@ h3 {
   margin-bottom: 20px;
 }
 
-/* Skills */
+/* =========================
+   COLORED SKILL BADGES
+========================= */
+
 .skill {
-  background: var(--card);
-  padding: 8px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  margin: 4px;
+  padding: 8px 14px;
+  border-radius: 25px;
+  font-size: 13px;
+  margin: 6px 6px 6px 0;
   display: inline-block;
+  font-weight: 600;
+  color: #fff;
+  transition: 0.3s ease;
 }
+
+.skill:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+/* Category Colors */
+.skill-python { background: #3776AB; }        /* Python */
+.skill-selenium { background: #43B02A; }      /* Selenium */
+.skill-robot { background: #FF6F00; }         /* Robot */
+.skill-api { background: #6C63FF; }           /* API */
+.skill-devops { background: #0EA5E9; }        /* CI/CD */
+.skill-cloud { background: #F59E0B; }         /* Cloud */
+.skill-tools { background: #10B981; }         /* Tools */
+.skill-testing { background: #EF4444; }       /* Testing */
 
 /* Projects */
 .projects-grid {
