@@ -20,21 +20,33 @@ html { scroll-behavior:smooth; }
 --primary:#3b82f6;
 }
 
-body.light{
---bg:#f8fafc;
---glass:rgba(255,255,255,0.6);
---card:#ffffff;
---text:#0f172a;
---muted:#475569;
---primary:#2563eb;
-}
-
 body{
 background:var(--bg);
 color:var(--text);
 margin:0;
 font-family:Segoe UI;
 transition:.3s;
+cursor:none;
+}
+
+/* Mouse Glow */
+.cursor-glow{
+position:fixed;
+width:200px;
+height:200px;
+background:radial-gradient(circle, rgba(59,130,246,0.3), transparent 70%);
+border-radius:50%;
+pointer-events:none;
+z-index:9999;
+transform:translate(-50%,-50%);
+}
+
+/* Particle Background */
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-3;
 }
 
 /* Sidebar */
@@ -94,50 +106,13 @@ color:#fff;
 box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
 
-.hero-buttons a{
-padding:10px 20px;
-border-radius:25px;
-font-weight:bold;
-text-decoration:none;
-margin-right:10px;
-}
-
-.btn-white{
-background:#fff;
-color:var(--primary);
-}
-
-.btn-outline{
-border:2px solid #fff;
-color:#fff;
-}
-
-/* Skills */
-.skill{
-padding:8px 14px;
-border-radius:25px;
-font-size:13px;
-margin:6px 6px 6px 0;
+/* Typing Effect */
+#typing-text{
+border-right:3px solid #fff;
+white-space:nowrap;
+overflow:hidden;
 display:inline-block;
-font-weight:600;
-color:#fff;
-transition:.3s ease;
 }
-
-.skill:hover{
-transform:translateY(-5px) scale(1.05);
-box-shadow:0 8px 20px rgba(0,0,0,0.3);
-}
-
-.skill-python{ background:#3776AB; }
-.skill-selenium{ background:#43B02A; }
-.skill-robot{ background:#FF6F00; }
-.skill-pytest{ background:#0A9F8E; }
-.skill-api{ background:#6C63FF; }
-.skill-devops{ background:#0EA5E9; }
-.skill-cloud{ background:#F59E0B; }
-.skill-tools{ background:#10B981; }
-.skill-testing{ background:#EF4444; }
 
 /* Sections */
 section{ margin-bottom:60px; }
@@ -148,7 +123,7 @@ padding-bottom:6px;
 margin-bottom:20px;
 }
 
-/* Reveal */
+/* Reveal Animation */
 .reveal{
 opacity:0;
 transform:translateY(40px);
@@ -160,29 +135,30 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* Toggle */
-.toggle-btn{
-position:fixed;
-top:15px;
-right:20px;
-background:var(--primary);
-color:#fff;
-padding:8px 14px;
-border-radius:20px;
-cursor:pointer;
-z-index:2000;
+/* Timeline Animation */
+.timeline-item{
+opacity:0;
+transform:translateX(-30px);
+transition:.8s ease;
+}
+
+.timeline-item.active{
+opacity:1;
+transform:translateX(0);
 }
 
 @media(max-width:768px){
 #sidebar{display:none;}
 #content{margin-left:0;padding:40px 20px;}
+body{cursor:auto;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="toggle-btn" onclick="toggleTheme()">🌙</div>
+<div id="particles-js"></div>
+<div class="cursor-glow"></div>
 
 <div id="sidebar">
 <img src="DSC_1169 copy (3).JPG" alt="Srinivasa R">
@@ -193,10 +169,6 @@ z-index:2000;
 <a href="#skills">Skills</a>
 <a href="#experience">Experience</a>
 <a href="#contact">Contact</a>
-
-<button class="btn btn-info w-100 mt-3 fw-bold" data-bs-toggle="modal" data-bs-target="#resumeModal">
-Preview Resume
-</button>
 </div>
 
 <div id="content">
@@ -204,7 +176,7 @@ Preview Resume
 <section id="home" class="hero">
 <h1>Hi, I'm Srinivasa 👋</h1>
 <h4>Senior Technical Lead | Senior SDET</h4>
-<p>8+ years building scalable automation frameworks across Web, API, Simulation & Cloud platforms.</p>
+<p><span id="typing-text"></span></p>
 </section>
 
 <section id="about" class="reveal">
@@ -218,27 +190,26 @@ Experienced in end-to-end automation framework design and DevOps integration.
 
 <section id="skills" class="reveal">
 <h3>Technical Skills</h3>
-
-<span class="skill skill-python">Python</span>
-<span class="skill skill-selenium">Selenium</span>
-<span class="skill skill-robot">Robot Framework</span>
-<span class="skill skill-pytest">Pytest</span>
-<span class="skill skill-tools">TestComplete</span>
-<span class="skill skill-api">API Testing (Postman)</span>
-<span class="skill skill-devops">Jenkins</span>
-<span class="skill skill-devops">Git / GitLab</span>
-<span class="skill skill-cloud">AWS</span>
-<span class="skill skill-cloud">Azure Storage</span>
-<span class="skill skill-tools">JIRA</span>
-<span class="skill skill-tools">TestRail</span>
-<span class="skill skill-testing">Regression Testing</span>
-<span class="skill skill-testing">Verification & Validation</span>
-
+<span class="skill">Python</span>
+<span class="skill">Selenium</span>
+<span class="skill">Robot Framework</span>
+<span class="skill">Pytest</span>
+<span class="skill">TestComplete</span>
+<span class="skill">API Testing (Postman)</span>
+<span class="skill">Jenkins</span>
+<span class="skill">Git / GitLab</span>
+<span class="skill">AWS</span>
+<span class="skill">Azure Storage</span>
+<span class="skill">JIRA</span>
+<span class="skill">TestRail</span>
+<span class="skill">Regression Testing</span>
+<span class="skill">Verification & Validation</span>
 </section>
 
 <section id="experience" class="reveal">
 <h3>Professional Experience</h3>
 
+<div class="timeline-item">
 <h5>Technical Lead – HCLTech (Eagle – PCB Design Software)</h5>
 <p><em>06/2022 - Present | Bangalore, India</em></p>
 <ul>
@@ -251,7 +222,9 @@ Experienced in end-to-end automation framework design and DevOps integration.
 <li>Integrated automation scripts into CI/CD pipelines.</li>
 <li>Managed automation frameworks using Git and AWS cloud validations.</li>
 </ul>
+</div>
 
+<div class="timeline-item">
 <h5>Senior Test Engineer – Emids (Infosario Registry Platform)</h5>
 <p><em>02/2021 - 06/2022 | Bangalore, India</em></p>
 <ul>
@@ -263,7 +236,9 @@ Experienced in end-to-end automation framework design and DevOps integration.
 <li>Led functional, regression & system testing ensuring release stability.</li>
 <li>Managed defect lifecycle using JIRA.</li>
 </ul>
+</div>
 
+<div class="timeline-item">
 <h5>Senior Product Development Engineer – Harman</h5>
 <p><em>07/2016 - 02/2020 | Bangalore, India</em></p>
 <ul>
@@ -273,6 +248,7 @@ Experienced in end-to-end automation framework design and DevOps integration.
 <li>Performed Intel pre-silicon validation using simulation environments.</li>
 <li>Debugged early-stage system issues with firmware & architecture teams.</li>
 </ul>
+</div>
 
 </section>
 
@@ -293,16 +269,45 @@ Experienced in end-to-end automation framework design and DevOps integration.
 </div>
 
 <script>
-function toggleTheme(){
-document.body.classList.toggle("light");
+/* Typing Animation */
+const text = "8+ years building scalable automation frameworks across Web, API, Simulation & Cloud platforms.";
+let i = 0;
+function typingEffect(){
+if(i < text.length){
+document.getElementById("typing-text").innerHTML += text.charAt(i);
+i++;
+setTimeout(typingEffect, 40);
 }
+}
+typingEffect();
 
+/* Reveal on Scroll */
 window.addEventListener("scroll",()=>{
-document.querySelectorAll(".reveal").forEach(el=>{
-if(el.getBoundingClientRect().top<window.innerHeight-100){
+document.querySelectorAll(".reveal, .timeline-item").forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight - 100){
 el.classList.add("active");
 }
 });
+});
+
+/* Mouse Glow */
+const glow=document.querySelector(".cursor-glow");
+document.addEventListener("mousemove",e=>{
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
+});
+
+/* Particles */
+particlesJS("particles-js",{
+particles:{
+number:{value:50},
+color:{value:"#3b82f6"},
+shape:{type:"circle"},
+opacity:{value:0.4},
+size:{value:3},
+line_linked:{enable:true,color:"#3b82f6",opacity:0.3},
+move:{enable:true,speed:2}
+}
 });
 </script>
 
