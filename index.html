@@ -7,38 +7,42 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
 
 <style>
 html { scroll-behavior:smooth; }
 
 :root{
+--bg:#0f172a;
+--glass:rgba(255,255,255,0.08);
+--card:rgba(30,41,59,0.6);
 --text:#e5e7eb;
 --muted:#94a3b8;
 --primary:#3b82f6;
 }
 
 body{
+background:var(--bg);
+color:var(--text);
 margin:0;
 font-family:Segoe UI;
-background:#0f172a;
-color:var(--text);
 overflow-x:hidden;
 cursor:none;
 }
 
-/* ===== Mouse Glow Effect ===== */
+/* Mouse Glow */
 .cursor-glow{
 position:fixed;
-width:250px;
-height:250px;
-background:radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(59,130,246,0.05) 60%, transparent 70%);
+width:220px;
+height:220px;
+background:radial-gradient(circle, rgba(59,130,246,0.3), transparent 70%);
 border-radius:50%;
 pointer-events:none;
 z-index:9999;
 transform:translate(-50%,-50%);
 }
 
-/* ===== Particle Background ===== */
+/* Particles */
 #particles-js{
 position:fixed;
 width:100%;
@@ -46,14 +50,14 @@ height:100%;
 z-index:-3;
 }
 
-/* ===== Sidebar ===== */
+/* Sidebar */
 #sidebar{
 width:260px;
 height:100vh;
 position:fixed;
 padding:30px 20px;
-background:rgba(15,23,42,0.8);
 backdrop-filter:blur(15px);
+background:var(--glass);
 border-right:1px solid rgba(255,255,255,0.1);
 }
 
@@ -83,33 +87,31 @@ margin-bottom:6px;
 }
 
 #sidebar a:hover{
-background:rgba(255,255,255,0.1);
+background:var(--card);
 }
 
-/* ===== Content ===== */
+/* Content */
 #content{
 margin-left:260px;
-padding:80px 40px;
+padding:60px 40px;
 max-width:1100px;
 }
 
-/* ===== Parallax Hero ===== */
+/* Parallax Hero */
 .hero{
-position:relative;
+background:url("IMG_2663.jpg") center/cover fixed no-repeat;
 padding:120px 40px;
 border-radius:20px;
-margin-bottom:80px;
-background:url("IMG_2663.jpg") center/cover fixed no-repeat;
+margin-bottom:60px;
+position:relative;
 overflow:hidden;
 }
 
 .hero::before{
 content:"";
 position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
+top:0;left:0;
+width:100%;height:100%;
 background:rgba(0,0,0,0.6);
 }
 
@@ -118,24 +120,52 @@ position:relative;
 z-index:2;
 }
 
-.hero h1{
-font-size:3rem;
-}
+.hero h1{font-size:2.8rem;}
 
-/* Typing Effect */
 #typed-text{
 border-right:3px solid #fff;
 white-space:nowrap;
 overflow:hidden;
-display:inline-block;
 }
 
-/* ===== Timeline ===== */
+/* Animated Counters */
+.stats{
+display:flex;
+gap:30px;
+margin-top:30px;
+}
+
+.stat-box{
+background:var(--card);
+padding:20px;
+border-radius:15px;
+text-align:center;
+backdrop-filter:blur(10px);
+}
+
+/* Glass Skill Cards */
+.skill{
+padding:8px 14px;
+border-radius:25px;
+font-size:13px;
+margin:6px;
+display:inline-block;
+font-weight:600;
+color:#fff;
+background:var(--glass);
+backdrop-filter:blur(10px);
+transition:.3s;
+}
+
+.skill:hover{
+transform:translateY(-5px);
+background:var(--primary);
+}
+
+/* Timeline */
 .timeline{
-position:relative;
-margin-left:20px;
-padding-left:40px;
 border-left:3px solid var(--primary);
+padding-left:30px;
 }
 
 .timeline-item{
@@ -150,44 +180,29 @@ opacity:1;
 transform:translateY(0);
 }
 
-.timeline-item h5{
-margin-bottom:5px;
-}
-
-/* ===== Skills ===== */
-.skill{
-padding:8px 14px;
-border-radius:25px;
-font-size:13px;
-margin:6px 6px 6px 0;
-display:inline-block;
-font-weight:600;
-color:#fff;
-transition:.3s ease;
-}
-
-.skill:hover{
-transform:translateY(-5px) scale(1.05);
-}
-
-.skill-python{ background:#3776AB; }
-.skill-selenium{ background:#43B02A; }
-.skill-robot{ background:#FF6F00; }
-.skill-api{ background:#6C63FF; }
-.skill-devops{ background:#0EA5E9; }
-.skill-cloud{ background:#F59E0B; }
-.skill-tools{ background:#10B981; }
-
 /* Reveal */
 .reveal{
 opacity:0;
 transform:translateY(40px);
-transition:.8s ease;
+transition:.8s;
 }
 
 .reveal.active{
 opacity:1;
 transform:translateY(0);
+}
+
+/* Theme Switch */
+.theme-switch{
+position:fixed;
+top:20px;
+right:20px;
+background:var(--primary);
+color:#fff;
+padding:8px 14px;
+border-radius:20px;
+cursor:pointer;
+z-index:2000;
 }
 
 @media(max-width:768px){
@@ -200,8 +215,9 @@ body{cursor:auto;}
 
 <body>
 
-<div class="cursor-glow"></div>
 <div id="particles-js"></div>
+<div class="cursor-glow"></div>
+<div class="theme-switch" onclick="toggleTheme()">Toggle Theme</div>
 
 <div id="sidebar">
 <img src="DSC_1169 copy (3).JPG">
@@ -215,56 +231,85 @@ body{cursor:auto;}
 
 <div id="content">
 
-<section id="home" class="hero">
+<section id="home" class="hero" data-tilt>
 <div class="hero-content">
 <h1>Hi, I'm Srinivasa 👋</h1>
 <h4><span id="typed-text"></span></h4>
 <p>8+ years building scalable automation frameworks across Web, API, Simulation & Cloud platforms.</p>
+
+<div class="stats">
+<div class="stat-box">
+<h3 class="counter" data-target="8">0</h3>
+<p>Years Experience</p>
+</div>
+<div class="stat-box">
+<h3 class="counter" data-target="1000">0</h3>
+<p>Test Cases Automated</p>
+</div>
+<div class="stat-box">
+<h3 class="counter" data-target="40">0</h3>
+<p>% Regression Reduced</p>
+</div>
+</div>
 </div>
 </section>
 
 <section id="about" class="reveal">
 <h3>Professional Summary</h3>
-<p>Automation Engineer specializing in Python, Selenium, Robot Framework, CI/CD, AWS, and TestComplete.</p>
+<p>
+Automation Engineer with expertise in Python, Selenium, Robot Framework,
+CI/CD (Jenkins, Git), AWS, TestRail and TestComplete.
+Experienced in end-to-end automation framework design and DevOps integration.
+</p>
 </section>
 
 <section id="skills" class="reveal">
 <h3>Technical Skills</h3>
-<span class="skill skill-python">Python</span>
-<span class="skill skill-selenium">Selenium</span>
-<span class="skill skill-robot">Robot Framework</span>
-<span class="skill skill-api">API Testing</span>
-<span class="skill skill-devops">Jenkins</span>
-<span class="skill skill-cloud">AWS</span>
-<span class="skill skill-tools">TestRail</span>
+<span class="skill">Python</span>
+<span class="skill">Selenium</span>
+<span class="skill">Robot Framework</span>
+<span class="skill">Pytest</span>
+<span class="skill">TestComplete</span>
+<span class="skill">API Testing</span>
+<span class="skill">Jenkins</span>
+<span class="skill">Git</span>
+<span class="skill">AWS</span>
+<span class="skill">Azure Storage</span>
+<span class="skill">JIRA</span>
+<span class="skill">TestRail</span>
 </section>
 
 <section id="experience" class="reveal">
 <h3>Professional Experience</h3>
 
 <div class="timeline">
+
 <div class="timeline-item">
-<h5>Technical Lead – HCLTech</h5>
-<p>Reduced regression cycle by 40% through automation leadership.</p>
+<h5>Technical Lead – HCLTech (Eagle – PCB Design Software)</h5>
+<p><em>06/2022 - Present | Bangalore, India</em></p>
+<p>Reduced regression cycle by 40% through automation leadership and CI/CD integration.</p>
 </div>
 
 <div class="timeline-item">
 <h5>Senior Test Engineer – Emids</h5>
-<p>Built scalable UI automation frameworks integrated with CI/CD.</p>
+<p><em>02/2021 - 06/2022 | Bangalore, India</em></p>
+<p>Built scalable Selenium & Robot Framework automation integrated with Jenkins.</p>
 </div>
 
 <div class="timeline-item">
 <h5>Senior Product Development Engineer – Harman</h5>
-<p>Performed telemetry validation & Intel pre-silicon simulation testing.</p>
-</div>
+<p><em>07/2016 - 02/2020 | Bangalore, India</em></p>
+<p>Performed telemetry validation and Intel pre-silicon simulation testing.</p>
 </div>
 
+</div>
 </section>
 
 <section id="contact" class="reveal">
 <h3>Contact</h3>
 <p>
 📧 srini1992r@gmail.com <br>
+📱 +91 9164289173 <br>
 📍 Bengaluru, India
 </p>
 </section>
@@ -291,7 +336,7 @@ setTimeout(type,isDeleting?40:80);
 }
 type();
 
-/* Scroll Reveal */
+/* Reveal */
 window.addEventListener("scroll",()=>{
 document.querySelectorAll(".reveal,.timeline-item").forEach(el=>{
 if(el.getBoundingClientRect().top<window.innerHeight-100){
@@ -300,19 +345,35 @@ el.classList.add("active");
 });
 });
 
+/* Animated Counters */
+const counters=document.querySelectorAll(".counter");
+counters.forEach(counter=>{
+const update=()=>{
+const target=+counter.getAttribute("data-target");
+const count=+counter.innerText;
+const inc=target/200;
+if(count<target){
+counter.innerText=Math.ceil(count+inc);
+setTimeout(update,10);
+}else{
+counter.innerText=target;
+}
+};
+update();
+});
+
+/* Theme Switch */
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+
 /* Particles */
 particlesJS("particles-js",{
 particles:{
 number:{value:60},
 color:{value:"#3b82f6"},
-shape:{type:"circle"},
-opacity:{value:0.4},
-size:{value:3},
 line_linked:{enable:true,color:"#3b82f6",opacity:0.3},
 move:{enable:true,speed:2}
-},
-interactivity:{
-events:{onhover:{enable:true,mode:"repulse"}}
 }
 });
 </script>
