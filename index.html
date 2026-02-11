@@ -37,14 +37,6 @@ font-family:Segoe UI;
 transition:.3s;
 }
 
-/* Particle Background */
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-}
-
 /* Sidebar */
 #sidebar{
 width:260px;
@@ -120,22 +112,7 @@ border:2px solid #fff;
 color:#fff;
 }
 
-/* Stats */
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-margin-top:30px;
-}
-
-.stat-box{
-background:var(--card);
-padding:20px;
-border-radius:15px;
-text-align:center;
-}
-
-/* ===== Colored Skill Badges ===== */
+/* Skills */
 .skill{
 padding:8px 14px;
 border-radius:25px;
@@ -144,7 +121,7 @@ margin:6px 6px 6px 0;
 display:inline-block;
 font-weight:600;
 color:#fff;
-transition:all .3s ease;
+transition:.3s ease;
 }
 
 .skill:hover{
@@ -162,28 +139,13 @@ box-shadow:0 8px 20px rgba(0,0,0,0.3);
 .skill-tools{ background:#10B981; }
 .skill-testing{ background:#EF4444; }
 
-/* Projects */
-.projects-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-}
+/* Sections */
+section{ margin-bottom:60px; }
 
-.project-card{
-background:var(--card);
-padding:25px;
-border-radius:18px;
-transition:.3s;
-}
-
-.project-card:hover{
-transform:translateY(-8px);
-}
-
-.project-card a{
-color:var(--primary);
-text-decoration:none;
-font-weight:600;
+h3{
+border-bottom:1px solid var(--muted);
+padding-bottom:6px;
+margin-bottom:20px;
 }
 
 /* Reveal */
@@ -220,7 +182,6 @@ z-index:2000;
 
 <body>
 
-<div id="particles-js"></div>
 <div class="toggle-btn" onclick="toggleTheme()">🌙</div>
 
 <div id="sidebar">
@@ -231,7 +192,6 @@ z-index:2000;
 <a href="#about">Summary</a>
 <a href="#skills">Skills</a>
 <a href="#experience">Experience</a>
-<a href="#projects">Projects</a>
 <a href="#contact">Contact</a>
 
 <button class="btn btn-info w-100 mt-3 fw-bold" data-bs-toggle="modal" data-bs-target="#resumeModal">
@@ -245,17 +205,6 @@ Preview Resume
 <h1>Hi, I'm Srinivasa 👋</h1>
 <h4>Senior Technical Lead | Senior SDET</h4>
 <p>8+ years building scalable automation frameworks across Web, API, Simulation & Cloud platforms.</p>
-
-<div class="hero-buttons mt-3">
-<a href="#projects" class="btn-white">View Projects</a>
-<a href="https://github.com/srinivasa-rs" target="_blank" class="btn-outline">GitHub</a>
-</div>
-
-<div class="stats">
-<div class="stat-box"><h3>8+</h3><p>Years Experience</p></div>
-<div class="stat-box"><h3>1000+</h3><p>Test Cases Automated</p></div>
-<div class="stat-box"><h3>40%</h3><p>Regression Reduced</p></div>
-</div>
 </section>
 
 <section id="about" class="reveal">
@@ -287,9 +236,44 @@ Experienced in end-to-end automation framework design and DevOps integration.
 
 </section>
 
-<section id="projects" class="reveal">
-<h3>GitHub Projects</h3>
-<div id="github-projects" class="projects-grid"></div>
+<section id="experience" class="reveal">
+<h3>Professional Experience</h3>
+
+<h5>Technical Lead – HCLTech (Eagle – PCB Design Software)</h5>
+<p><em>06/2022 - Present | Bangalore, India</em></p>
+<ul>
+<li>Automated application installation and environment setup using Excel-driven logic in TestComplete.</li>
+<li>Reduced regression cycles by 40% improving release confidence.</li>
+<li>Centralized installation and execution control within TestRail reducing manual dependency and errors.</li>
+<li>Performed end-to-end system validation with US-based Eagle PCB Design team.</li>
+<li>Executed early-stage validation using simulators before full environment availability.</li>
+<li>Designed and automated functional & regression test cases using TestComplete (Python).</li>
+<li>Integrated automation scripts into CI/CD pipelines.</li>
+<li>Managed automation frameworks using Git and AWS cloud validations.</li>
+</ul>
+
+<h5>Senior Test Engineer – Emids (Infosario Registry Platform)</h5>
+<p><em>02/2021 - 06/2022 | Bangalore, India</em></p>
+<ul>
+<li>Designed scalable UI automation using Selenium WebDriver & Robot Framework (Python).</li>
+<li>Built reusable automation frameworks improving stability and coverage.</li>
+<li>Integrated automation with Jenkins CI/CD pipelines.</li>
+<li>Executed validations on AWS cloud environments.</li>
+<li>Performed API testing using Postman.</li>
+<li>Led functional, regression & system testing ensuring release stability.</li>
+<li>Managed defect lifecycle using JIRA.</li>
+</ul>
+
+<h5>Senior Product Development Engineer – Harman</h5>
+<p><em>07/2016 - 02/2020 | Bangalore, India</em></p>
+<ul>
+<li>Validated Certiq mining telemetry platform ensuring reliable data ingestion.</li>
+<li>Performed simulator-based telemetry validation using Python automation.</li>
+<li>Tested APIs & data pipelines using Postman & Python scripts.</li>
+<li>Performed Intel pre-silicon validation using simulation environments.</li>
+<li>Debugged early-stage system issues with firmware & architecture teams.</li>
+</ul>
+
 </section>
 
 <section id="contact" class="reveal">
@@ -308,23 +292,6 @@ Experienced in end-to-end automation framework design and DevOps integration.
 
 </div>
 
-<!-- Resume Modal -->
-<div class="modal fade" id="resumeModal">
-<div class="modal-dialog modal-lg">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title">Resume Preview</h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-</div>
-<div class="modal-body">
-<iframe src="SRINIVASA_8YRS_SDET.pdf" width="100%" height="500px"></iframe>
-</div>
-</div>
-</div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
 function toggleTheme(){
 document.body.classList.toggle("light");
@@ -336,32 +303,6 @@ if(el.getBoundingClientRect().top<window.innerHeight-100){
 el.classList.add("active");
 }
 });
-});
-
-fetch("https://api.github.com/users/srinivasa-rs/repos")
-.then(res=>res.json())
-.then(data=>{
-const container=document.getElementById("github-projects");
-data.slice(0,6).forEach(repo=>{
-const card=document.createElement("div");
-card.className="project-card";
-card.innerHTML=`
-<h5>${repo.name}</h5>
-<p>${repo.description||"No description available"}</p>
-<a href="${repo.html_url}" target="_blank">View Repository</a>
-`;
-container.appendChild(card);
-});
-});
-
-particlesJS("particles-js",{
-particles:{number:{value:60},
-color:{value:"#3b82f6"},
-shape:{type:"circle"},
-opacity:{value:.5},
-size:{value:3},
-move:{enable:true,speed:2}},
-interactivity:{events:{onhover:{enable:true,mode:"repulse"}}}
 });
 </script>
 
