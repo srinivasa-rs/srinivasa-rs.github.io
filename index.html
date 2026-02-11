@@ -92,34 +92,14 @@ padding:60px 40px;
 max-width:1100px;
 }
 
-/* HERO WITH IMAGE BACKGROUND */
+/* Hero */
 .hero{
-position:relative;
-padding:100px 40px;
+background:linear-gradient(135deg,var(--primary),#1e40af);
+padding:80px 40px;
 border-radius:20px;
 margin-bottom:60px;
 color:#fff;
-overflow:hidden;
-background:url("IMG_2663.jpg") center/cover no-repeat;
-}
-
-/* Dark overlay for readability */
-.hero::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.55);
-z-index:0;
-border-radius:20px;
-}
-
-/* Ensure content stays above overlay */
-.hero > *{
-position:relative;
-z-index:1;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
 
 .hero-buttons a{
@@ -132,7 +112,7 @@ margin-right:10px;
 
 .btn-white{
 background:#fff;
-color:#000;
+color:var(--primary);
 }
 
 .btn-outline{
@@ -149,13 +129,13 @@ margin-top:30px;
 }
 
 .stat-box{
-background:rgba(0,0,0,0.6);
+background:var(--card);
 padding:20px;
 border-radius:15px;
 text-align:center;
 }
 
-/* Colored Skills */
+/* ===== Colored Skill Badges ===== */
 .skill{
 padding:8px 14px;
 border-radius:25px;
@@ -164,7 +144,7 @@ margin:6px 6px 6px 0;
 display:inline-block;
 font-weight:600;
 color:#fff;
-transition:.3s ease;
+transition:all .3s ease;
 }
 
 .skill:hover{
@@ -278,8 +258,69 @@ Preview Resume
 </div>
 </section>
 
-<!-- Rest of your sections remain unchanged -->
+<section id="about" class="reveal">
+<h3>Professional Summary</h3>
+<p>
+Automation Engineer with expertise in Python, Selenium, Robot Framework,
+CI/CD (Jenkins, Git), AWS, TestRail and TestComplete.
+Experienced in end-to-end automation framework design and DevOps integration.
+</p>
+</section>
 
+<section id="skills" class="reveal">
+<h3>Technical Skills</h3>
+
+<span class="skill skill-python">Python</span>
+<span class="skill skill-selenium">Selenium</span>
+<span class="skill skill-robot">Robot Framework</span>
+<span class="skill skill-pytest">Pytest</span>
+<span class="skill skill-tools">TestComplete</span>
+<span class="skill skill-api">API Testing (Postman)</span>
+<span class="skill skill-devops">Jenkins</span>
+<span class="skill skill-devops">Git / GitLab</span>
+<span class="skill skill-cloud">AWS</span>
+<span class="skill skill-cloud">Azure Storage</span>
+<span class="skill skill-tools">JIRA</span>
+<span class="skill skill-tools">TestRail</span>
+<span class="skill skill-testing">Regression Testing</span>
+<span class="skill skill-testing">Verification & Validation</span>
+
+</section>
+
+<section id="projects" class="reveal">
+<h3>GitHub Projects</h3>
+<div id="github-projects" class="projects-grid"></div>
+</section>
+
+<section id="contact" class="reveal">
+<h3>Contact</h3>
+<p>
+📧 srini1992r@gmail.com <br>
+📱 +91 9164289173 <br>
+📍 Bengaluru, India <br>
+<a href="https://www.linkedin.com/in/srinivasa0b604aba" target="_blank">LinkedIn</a>
+</p>
+</section>
+
+<footer class="text-center mt-5">
+© 2026 Srinivasa R
+</footer>
+
+</div>
+
+<!-- Resume Modal -->
+<div class="modal fade" id="resumeModal">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Resume Preview</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body">
+<iframe src="SRINIVASA_8YRS_SDET.pdf" width="100%" height="500px"></iframe>
+</div>
+</div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -294,6 +335,22 @@ document.querySelectorAll(".reveal").forEach(el=>{
 if(el.getBoundingClientRect().top<window.innerHeight-100){
 el.classList.add("active");
 }
+});
+});
+
+fetch("https://api.github.com/users/srinivasa-rs/repos")
+.then(res=>res.json())
+.then(data=>{
+const container=document.getElementById("github-projects");
+data.slice(0,6).forEach(repo=>{
+const card=document.createElement("div");
+card.className="project-card";
+card.innerHTML=`
+<h5>${repo.name}</h5>
+<p>${repo.description||"No description available"}</p>
+<a href="${repo.html_url}" target="_blank">View Repository</a>
+`;
+container.appendChild(card);
 });
 });
 
