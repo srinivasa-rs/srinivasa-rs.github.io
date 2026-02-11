@@ -207,3 +207,106 @@ h3 {
   #content { margin-left:0; padding:40px 20px; }
 }
 </style>
+/* ===============================
+   ULTRA PREMIUM HERO VISUALS
+================================= */
+
+/* SVG Laptop */
+.laptop-svg{
+position:absolute;
+right:5%;
+bottom:0;
+width:320px;
+opacity:0.9;
+animation:floatLaptop 6s ease-in-out infinite;
+z-index:0;
+}
+
+@keyframes floatLaptop{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
+/* Animated Coding Lines */
+.code-lines{
+position:absolute;
+left:5%;
+top:20%;
+font-family:monospace;
+font-size:14px;
+color:#00ffcc;
+opacity:0.6;
+z-index:0;
+animation:blink 1.5s infinite alternate;
+}
+
+@keyframes blink{
+from{opacity:0.4;}
+to{opacity:0.8;}
+}
+
+/* 3D Glass Shapes */
+.glass-shape{
+position:absolute;
+width:120px;
+height:120px;
+background:rgba(255,255,255,0.08);
+border-radius:20px;
+backdrop-filter:blur(10px);
+animation:rotateGlass 12s linear infinite;
+}
+
+.glass1{ top:10%; right:30%; }
+.glass2{ bottom:15%; left:40%; }
+
+@keyframes rotateGlass{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+/* Circuit Lines */
+.circuit{
+position:absolute;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+background-size:40px 40px;
+opacity:0.3;
+animation:circuitMove 20s linear infinite;
+z-index:0;
+}
+
+@keyframes circuitMove{
+0%{background-position:0 0;}
+100%{background-position:40px 40px;}
+}
+
+/* FontAwesome Floating Icons */
+.fa-float{
+position:absolute;
+font-size:32px;
+opacity:0.2;
+animation:floatIcon 8s ease-in-out infinite;
+}
+
+.fa-python{ top:15%; left:20%; }
+.fa-cloud{ top:60%; right:25%; }
+.fa-database{ bottom:20%; left:15%; }
+
+@keyframes floatIcon{
+0%{transform:translateY(0);}
+50%{transform:translateY(-18px);}
+100%{transform:translateY(0);}
+}
+
+/* Ensure text stays above visuals */
+.hero h1,
+.hero h4,
+.hero p{
+position:relative;
+z-index:2;
+}
+
