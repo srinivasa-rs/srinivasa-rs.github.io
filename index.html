@@ -6,7 +6,6 @@
 <title>Srinivasa R | Senior Technical Lead | Senior SDET</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
 html { scroll-behavior:smooth; }
@@ -20,47 +19,33 @@ html { scroll-behavior:smooth; }
 --primary:#3b82f6;
 }
 
-body.light{
---bg:#f8fafc;
---glass:rgba(0,0,0,0.05);
---card:#ffffff;
---text:#0f172a;
---muted:#475569;
---primary:#2563eb;
-}
-
 body{
-background:var(--bg);
+background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e3a8a);
+background-size:400% 400%;
+animation:bgMove 15s ease infinite;
 color:var(--text);
 margin:0;
 font-family:Segoe UI;
-transition:.3s ease;
+transition:.3s;
+cursor:none;
 }
 
-/* Particle Background */
-#particles-js{
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Mouse Glow */
+.cursor-glow{
 position:fixed;
-width:100%;
-height:100%;
-z-index:-3;
-}
-
-/* Floating Tech Icons */
-.floating-icon{
-position:fixed;
-font-size:40px;
-opacity:0.08;
-animation:float 12s ease-in-out infinite;
-z-index:-2;
-}
-
-.icon1{ top:10%; left:5%; animation-delay:0s; }
-.icon2{ bottom:15%; right:10%; animation-delay:4s; }
-.icon3{ top:60%; left:15%; animation-delay:7s; }
-
-@keyframes float{
-0%,100%{ transform:translateY(0px); }
-50%{ transform:translateY(-30px); }
+width:200px;
+height:200px;
+background:radial-gradient(circle, rgba(59,130,246,0.3), transparent 70%);
+border-radius:50%;
+pointer-events:none;
+z-index:9999;
+transform:translate(-50%,-50%);
 }
 
 /* Sidebar */
@@ -103,25 +88,6 @@ margin-bottom:6px;
 background:var(--card);
 }
 
-/* Resume Button Animation */
-.resume-btn{
-display:block;
-text-align:center;
-margin-top:15px;
-padding:10px;
-background:var(--primary);
-color:#fff;
-border-radius:25px;
-text-decoration:none;
-font-weight:600;
-transition:.3s ease;
-}
-
-.resume-btn:hover{
-transform:scale(1.05);
-box-shadow:0 8px 25px rgba(0,0,0,0.3);
-}
-
 /* Content */
 #content{
 margin-left:260px;
@@ -147,19 +113,52 @@ overflow:hidden;
 display:inline-block;
 }
 
-/* Skill Progress Bars */
-.progress-container{
+/* Skill Badges */
+.skill{
+padding:8px 14px;
+border-radius:25px;
+font-size:13px;
+margin:6px 6px 6px 0;
+display:inline-block;
+font-weight:600;
+color:#fff;
+transition:.3s ease;
+animation:fadeInUp .6s ease forwards;
+}
+
+.skill:hover{
+transform:translateY(-5px) scale(1.08);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Different Colors */
+.skill:nth-child(1){background:#3776AB;}
+.skill:nth-child(2){background:#43B02A;}
+.skill:nth-child(3){background:#FF6F00;}
+.skill:nth-child(4){background:#0A9F8E;}
+.skill:nth-child(5){background:#F59E0B;}
+.skill:nth-child(6){background:#6C63FF;}
+.skill:nth-child(7){background:#0EA5E9;}
+.skill:nth-child(8){background:#10B981;}
+.skill:nth-child(9){background:#EF4444;}
+.skill:nth-child(10){background:#9333EA;}
+.skill:nth-child(11){background:#F97316;}
+.skill:nth-child(12){background:#14B8A6;}
+.skill:nth-child(13){background:#8B5CF6;}
+.skill:nth-child(14){background:#22C55E;}
+
+@keyframes fadeInUp{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* Sections */
+section{ margin-bottom:60px; }
+
+h3{
+border-bottom:1px solid var(--muted);
+padding-bottom:6px;
 margin-bottom:20px;
-}
-
-.progress{
-height:8px;
-background:var(--card);
-}
-
-.progress-bar{
-width:0;
-transition:width 2s ease;
 }
 
 /* Reveal */
@@ -174,36 +173,29 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* Theme Toggle */
-.theme-toggle{
-position:fixed;
-top:20px;
-right:20px;
-background:var(--primary);
-color:#fff;
-padding:8px 14px;
-border-radius:20px;
-cursor:pointer;
-z-index:2000;
+/* Timeline Animation */
+.timeline-item{
+opacity:0;
+transform:translateX(-30px);
+transition:.8s ease;
+}
+
+.timeline-item.active{
+opacity:1;
+transform:translateX(0);
 }
 
 @media(max-width:768px){
 #sidebar{display:none;}
 #content{margin-left:0;padding:40px 20px;}
+body{cursor:auto;}
 }
 </style>
 </head>
 
 <body>
 
-<div id="particles-js"></div>
-
-<!-- Floating Tech Icons -->
-<div class="floating-icon icon1">🐍</div>
-<div class="floating-icon icon2">☁️</div>
-<div class="floating-icon icon3">⚙️</div>
-
-<div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+<div class="cursor-glow"></div>
 
 <div id="sidebar">
 <img src="DSC_1169 copy (3).JPG" alt="Srinivasa R">
@@ -214,8 +206,6 @@ z-index:2000;
 <a href="#skills">Skills</a>
 <a href="#experience">Experience</a>
 <a href="#contact">Contact</a>
-
-<a href="SRINIVASA_8YRS_SDET.pdf" download class="resume-btn">Download Resume</a>
 </div>
 
 <div id="content">
@@ -238,33 +228,29 @@ Experienced in end-to-end automation framework design and DevOps integration.
 <section id="skills" class="reveal">
 <h3>Technical Skills</h3>
 
-<div class="progress-container">
-<label>Python</label>
-<div class="progress"><div class="progress-bar bg-info" data-width="95%"></div></div>
-</div>
-
-<div class="progress-container">
-<label>Selenium</label>
-<div class="progress"><div class="progress-bar bg-success" data-width="90%"></div></div>
-</div>
-
-<div class="progress-container">
-<label>Robot Framework</label>
-<div class="progress"><div class="progress-bar bg-warning" data-width="85%"></div></div>
-</div>
-
-<div class="progress-container">
-<label>AWS</label>
-<div class="progress"><div class="progress-bar bg-primary" data-width="75%"></div></div>
-</div>
+<!-- ALL EXISTING SKILLS KEPT -->
+<span class="skill">Python</span>
+<span class="skill">Selenium</span>
+<span class="skill">Robot Framework</span>
+<span class="skill">Pytest</span>
+<span class="skill">TestComplete</span>
+<span class="skill">API Testing (Postman)</span>
+<span class="skill">Jenkins</span>
+<span class="skill">Git / GitLab</span>
+<span class="skill">AWS</span>
+<span class="skill">Azure Storage</span>
+<span class="skill">JIRA</span>
+<span class="skill">TestRail</span>
+<span class="skill">Regression Testing</span>
+<span class="skill">Verification & Validation</span>
 
 </section>
 
+<!-- EXPERIENCE SECTION UNCHANGED -->
 <section id="experience" class="reveal">
 <h3>Professional Experience</h3>
 
-<!-- KEEPING ALL YOUR EXPERIENCE CONTENT EXACTLY SAME -->
-
+<div class="timeline-item">
 <h5>Technical Lead – HCLTech (Eagle – PCB Design Software)</h5>
 <p><em>06/2022 - Present | Bangalore, India</em></p>
 <ul>
@@ -277,8 +263,9 @@ Experienced in end-to-end automation framework design and DevOps integration.
 <li>Integrated automation scripts into CI/CD pipelines.</li>
 <li>Managed automation frameworks using Git and AWS cloud validations.</li>
 </ul>
+</div>
 
-<!-- Remaining experience unchanged -->
+<!-- Remaining content unchanged -->
 
 </section>
 
@@ -313,35 +300,18 @@ typing();
 
 /* Reveal */
 window.addEventListener("scroll",()=>{
-document.querySelectorAll(".reveal").forEach(el=>{
+document.querySelectorAll(".reveal,.timeline-item").forEach(el=>{
 if(el.getBoundingClientRect().top<window.innerHeight-100){
 el.classList.add("active");
 }
 });
 });
 
-/* Animate Progress Bars */
-window.addEventListener("scroll",()=>{
-document.querySelectorAll(".progress-bar").forEach(bar=>{
-if(bar.getBoundingClientRect().top<window.innerHeight){
-bar.style.width=bar.getAttribute("data-width");
-}
-});
-});
-
-/* Theme Switch */
-function toggleTheme(){
-document.body.classList.toggle("light");
-}
-
-/* Particles */
-particlesJS("particles-js",{
-particles:{
-number:{value:40},
-color:{value:"#3b82f6"},
-line_linked:{enable:true,color:"#3b82f6",opacity:0.3},
-move:{enable:true,speed:2}
-}
+/* Mouse Glow */
+const glow=document.querySelector(".cursor-glow");
+document.addEventListener("mousemove",e=>{
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
 });
 </script>
 
