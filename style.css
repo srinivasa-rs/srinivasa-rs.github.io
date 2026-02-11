@@ -303,9 +303,16 @@ h3 {
 }
 .highlight-role{
 background:linear-gradient(90deg,#3b82f6,#9333ea,#06b6d4);
+background-size:200% auto;
+animation:shine 4s linear infinite;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 font-weight:800;
 }
+
+@keyframes shine{
+to{background-position:200% center;}
+}
+
 
 </style>
