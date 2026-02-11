@@ -1,67 +1,91 @@
-/* =========================
-   GLOBAL VARIABLES
-========================= */
-:root {
-  --bg: #ffffff;
-  --text: #111827;
-  --card: #f3f4f6;
-  --primary: #2563eb;
-  --secondary: #1e40af;
-  --shadow: rgba(0, 0, 0, 0.08);
-}
-
-body.dark-mode {
-  --bg: #0f172a;
-  --text: #e2e8f0;
-  --card: #1e293b;
-  --primary: #3b82f6;
-  --secondary: #2563eb;
-  --shadow: rgba(0, 0, 0, 0.4);
-}
-
-/* =========================
-   BASE STYLES
-========================= */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: background 0.3s ease, color 0.3s ease;
+<style>
+html {
   scroll-behavior: smooth;
 }
 
-section {
-  padding: 80px 10%;
+:root {
+  --bg: #0f172a;
+  --sidebar: #020617;
+  --card: #1e293b;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --primary: #3b82f6;
 }
 
-h1, h2, h3 {
+body.dark-mode {
+  --bg: #ffffff;
+  --sidebar: #f1f5f9;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --primary: #2563eb;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
   margin: 0;
+  transition: 0.3s ease;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 2.2rem;
-}
-
-/* =========================
-   HERO SECTION
-========================= */
-.hero {
+/* Sidebar */
+#sidebar {
+  width: 260px;
+  background: var(--sidebar);
+  position: fixed;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 30px 20px;
+  z-index: 1000;
+}
+
+#sidebar img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 12px;
+  border: 3px solid var(--primary);
+}
+
+#sidebar p {
   text-align: center;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  font-size: 14px;
+  color: var(--muted);
+}
+
+#sidebar a {
+  display: block;
+  padding: 10px;
+  color: var(--text);
+  border-radius: 6px;
+  margin-bottom: 6px;
+  text-decoration: none;
+}
+
+#sidebar a.active,
+#sidebar a:hover {
+  background: var(--card);
+}
+
+/* Content */
+#content {
+  margin-left: 260px;
+  padding: 60px 40px;
+  max-width: 1100px;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--primary), #1e40af);
+  padding: 80px 40px;
+  border-radius: 20px;
+  margin-bottom: 60px;
   color: white;
-  padding: 20px;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+  font-size: 2.5rem;
 }
 
 .hero h2 {
@@ -69,109 +93,83 @@ h2 {
   margin-bottom: 20px;
 }
 
-.hero p {
-  max-width: 600px;
-  margin: auto;
-  opacity: 0.9;
-}
-
-.hero-buttons {
-  margin-top: 25px;
-}
-
-.btn-primary,
-.btn-outline {
-  padding: 12px 25px;
-  margin: 5px;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: 600;
-  transition: 0.3s ease;
-}
-
-.btn-primary {
+.btn-primary-custom {
   background: white;
   color: var(--primary);
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
-.btn-primary:hover {
-  transform: translateY(-3px);
-}
-
-.btn-outline {
+.btn-outline-custom {
   border: 2px solid white;
   color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
 }
 
-.btn-outline:hover {
-  background: white;
-  color: var(--primary);
+/* Sections */
+section {
+  margin-bottom: 60px;
 }
 
-/* =========================
-   PROJECTS SECTION
-========================= */
+h3 {
+  border-bottom: 1px solid var(--muted);
+  padding-bottom: 6px;
+  margin-bottom: 20px;
+}
+
+/* Skills */
+.skill {
+  background: var(--card);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin: 4px;
+  display: inline-block;
+}
+
+/* Projects */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
 }
 
 .project-card {
   background: var(--card);
+  padding: 25px;
   border-radius: 18px;
-  padding: 30px;
-  box-shadow: 0 10px 25px var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px var(--shadow);
-}
-
-.project-card h3 {
-  margin-bottom: 15px;
-}
-
-.project-card p {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  opacity: 0.85;
+  transform: translateY(-8px);
 }
 
 .project-card a {
+  color: var(--primary);
   text-decoration: none;
   font-weight: 600;
-  color: var(--primary);
 }
 
-/* =========================
-   DARK MODE TOGGLE
-========================= */
+/* Dark toggle */
 .toggle-btn {
   position: fixed;
-  top: 20px;
+  top: 15px;
   right: 20px;
   background: var(--primary);
   color: white;
-  padding: 8px 16px;
-  border-radius: 25px;
+  padding: 8px 14px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 14px;
-  box-shadow: 0 5px 15px var(--shadow);
-  transition: 0.3s ease;
-  z-index: 1000;
+  z-index: 2000;
 }
 
-.toggle-btn:hover {
-  transform: scale(1.05);
-}
-
-/* =========================
-   SCROLL REVEAL ANIMATION
-========================= */
+/* Reveal animation */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -183,19 +181,9 @@ h2 {
   transform: translateY(0);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  section {
-    padding: 60px 5%;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+/* Responsive */
+@media(max-width:768px){
+  #sidebar { display:none; }
+  #content { margin-left:0; padding:40px 20px; }
 }
+</style>
