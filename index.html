@@ -96,58 +96,14 @@ max-width:1100px;
 }
 
 /* Hero */
-/* ===== Animated Tech Hero ===== */
 .hero{
-position:relative;
+background:linear-gradient(135deg,var(--primary),#1e40af);
 padding:80px 40px;
 border-radius:20px;
 margin-bottom:60px;
 color:#fff;
-overflow:hidden;
-background:linear-gradient(135deg,#1e3a8a,#2563eb,#1e40af);
-background-size:300% 300%;
-animation:gradientMove 12s ease infinite;
-box-shadow:0 20px 60px rgba(0,0,0,.4);
+box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
-
-/* Gradient Animation */
-@keyframes gradientMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
-/* Floating Tech Icons */
-.tech-icon{
-position:absolute;
-font-size:40px;
-opacity:0.15;
-animation:float 8s ease-in-out infinite;
-}
-
-.tech-icon:nth-child(1){top:10%; left:15%; animation-delay:0s;}
-.tech-icon:nth-child(2){top:70%; left:10%; animation-delay:2s;}
-.tech-icon:nth-child(3){top:20%; right:15%; animation-delay:4s;}
-.tech-icon:nth-child(4){bottom:15%; right:20%; animation-delay:1s;}
-.tech-icon:nth-child(5){top:50%; left:50%; animation-delay:3s;}
-
-@keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-20px);}
-100%{transform:translateY(0px);}
-}
-
-/* Glow Overlay */
-.hero::before{
-content:"";
-position:absolute;
-width:300px;
-height:300px;
-background:radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
-top:-80px;
-right:-80px;
-}
-
 
 /* Typing Effect */
 #typing-text{
@@ -255,35 +211,6 @@ body{cursor:auto;}
 <div id="content">
 
 <section id="home" class="hero">
-<!-- Floating IT Icons -->
-<!-- Circuit Background -->
-<div class="circuit"></div>
-
-<!-- Animated Coding Lines -->
-<div class="code-lines">
-&lt;script&gt;<br>
-  automate();<br>
-  deploy();<br>
-&lt;/script&gt;
-</div>
-
-<!-- 3D Glass Shapes -->
-<div class="glass-shape glass1"></div>
-<div class="glass-shape glass2"></div>
-
-<!-- SVG Laptop -->
-<svg class="laptop-svg" viewBox="0 0 600 400">
-  <rect x="100" y="100" width="400" height="220" rx="15" fill="#0f172a"/>
-  <rect x="120" y="120" width="360" height="180" rx="10" fill="#1e40af"/>
-  <rect x="80" y="320" width="440" height="30" rx="10" fill="#111827"/>
-</svg>
-
-<!-- FontAwesome Floating Icons -->
-<i class="fa-brands fa-python fa-float"></i>
-<i class="fa-solid fa-cloud fa-float"></i>
-<i class="fa-solid fa-database fa-float"></i>
-
-
 <h1>Hi, I'm Srinivasa 👋</h1>
 <h4>Senior Technical Lead | Senior SDET</h4>
 <p><span id="typing-text"></span></p>
@@ -338,6 +265,7 @@ Experienced in end-to-end automation framework design and DevOps integration.
 </ul>
 </div>
 <div class="timeline-item"> <h5>Senior Test Engineer – Emids (Infosario Registry Platform)</h5> <p><em>02/2021 - 06/2022 | Bangalore, India</em></p> <ul> <li>Designed scalable UI automation using Selenium WebDriver & Robot Framework (Python).</li> <li>Built reusable automation frameworks improving stability and coverage.</li> <li>Integrated automation with Jenkins CI/CD pipelines.</li> <li>Executed validations on AWS cloud environments.</li> <li>Performed API testing using Postman.</li> <li>Led functional, regression & system testing ensuring release stability.</li> <li>Managed defect lifecycle using JIRA.</li> </ul> </div> <div class="timeline-item"> <h5>Senior Product Development Engineer – Harman</h5> <p><em>07/2016 - 02/2020 | Bangalore, India</em></p> <ul> <li>Validated Certiq mining telemetry platform ensuring reliable data ingestion.</li> <li>Performed simulator-based telemetry validation using Python automation.</li> <li>Tested APIs & data pipelines using Postman & Python scripts.</li> <li>Performed Intel pre-silicon validation using simulation environments.</li> <li>Debugged early-stage system issues with firmware & architecture teams.</li> </ul> </div>
+
 <!-- Remaining content unchanged -->
 
 </section>
